@@ -1,2 +1,2 @@
-# Runiny_desktop
+# Runiny_desktop_JavaFx
 JavaFx school Project !
