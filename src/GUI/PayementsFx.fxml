@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+
+<AnchorPane id="pane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../../Downloads/style%20(1).css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane layoutX="163.0" layoutY="14.0" prefHeight="35.0" prefWidth="430.0" styleClass="panebar" stylesheets="@../../../../Downloads/style%20(1).css" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="14.0">
+         <children>
+            <TextField layoutX="7.0" layoutY="6.0" prefHeight="25.0" prefWidth="118.0" style="-fx-background-radius: 30; -fx-border-radius: 30;" />
+            <CheckBox layoutX="129.0" layoutY="10.0" mnemonicParsing="false" text="Abonnements" textFill="WHITE" />
+            <CheckBox layoutX="234.0" layoutY="10.0" mnemonicParsing="false" text="Séances" textFill="WHITE" />
+            <CheckBox layoutX="318.0" layoutY="10.0" mnemonicParsing="false" text="Séances privées" textFill="WHITE" />
+            <FontAwesomeIconView fill="#481d96" glyphName="USER" layoutX="15.0" layoutY="25.0" size="20" wrappingWidth="16.571489334106445" />
+         </children>
+      </Pane>
+      <Pane prefHeight="400.0" prefWidth="152.0" styleClass="pane" stylesheets="@../../../../Downloads/style%20(1).css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+   </children>
+</AnchorPane>
