@@ -26,6 +26,6 @@ public class Runiny_javaFx {
         payement p = new payement();
         p.setMontant(2000);
         PayementM pm=new PayementM();
-        pm.payment(p);
+        //pm.payment(p);
     }
 }

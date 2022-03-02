@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="139.0" prefWidth="347.0" style="-fx-background-radius: 30; -fx-border-radius: 30;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="88.0" fitWidth="93.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="46.0" layoutY="107.0" text="Label" />
+      <Line endX="-27.800025939941406" endY="-45.20000076293945" layoutX="148.0" layoutY="60.0" startX="-27.800025939941406" startY="62.80000305175781" />
+      <Label layoutX="139.0" layoutY="16.0" text="Label" />
+      <Label layoutX="139.0" layoutY="43.0" text="Label" />
+      <Label layoutX="139.0" layoutY="69.0" text="Label" />
+      <Label layoutX="139.0" layoutY="96.0" text="Label" />
+   </children>
+</Pane>
