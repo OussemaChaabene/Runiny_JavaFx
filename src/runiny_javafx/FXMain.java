@@ -5,6 +5,15 @@
  */
 package runiny_javafx;
 
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import Metier.PayementM;
 import Services.PayementService;
 import entities.payement;
@@ -25,26 +34,28 @@ import javafx.stage.Stage;
  *
  * @author ASUS
  */
-public class Runiny_javaFx {
+public class FXMain extends Application {
 
-    public void start(Stage primaryStage) throws Exception{
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+
+        payement p = new payement();
+        p.setMontant(2000);
+        p.setDate_pay(java.sql.Date.valueOf(LocalDate.now()));
+        PayementService ps = new PayementService();
+
         Parent root = FXMLLoader.load(getClass().getResource("../GUI/PayementsFx.fxml"));
+        Scene scene = new Scene(root); 
         primaryStage.setTitle("Payements");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
-    
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        payement p = new payement();
-        p.setMontant(2000);
-        p.setDate_pay(java.sql.Date.valueOf(LocalDate.now()));
-        PayementService ps= new PayementService();
-//        ps.ajouterP(p);
-  //      launch(args);
-        
+        launch(args);
     }
+
 }
