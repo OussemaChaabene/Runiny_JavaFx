@@ -5,6 +5,11 @@
  */
 package runiny_javafx;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+
 /**
  *
  * @author ASUS
@@ -16,6 +21,6 @@ public class Runiny_javaFx {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
     }
-    
 }
