@@ -14,19 +14,19 @@ import java.util.Date;
 public class payement {
     
     int id_pay;
-    float montant;
-    Date date_pay;
+    int montant;
+    String date_pay;
 
     public payement() {
     }
 
-    public payement(int id_pay, float montant, Date date_pay) {
+    public payement(int id_pay, int montant, String date_pay) {
         this.id_pay = id_pay;
         this.montant = montant;
         this.date_pay = date_pay;
     }
 
-    public payement(float montant, Date date_pay) {
+    public payement(int montant, String date_pay) {
         this.montant = montant;
         this.date_pay = date_pay;
     }
@@ -39,19 +39,19 @@ public class payement {
         this.id_pay = id_pay;
     }
 
-    public float getMontant() {
+    public int getMontant() {
         return montant;
     }
 
-    public void setMontant(float montant) {
+    public void setMontant(int montant) {
         this.montant = montant;
     }
 
-    public Date getDate_pay() {
+    public String getDate_pay() {
         return date_pay;
     }
 
-    public void setDate_pay(Date date_pay) {
+    public void setDate_pay(String date_pay) {
         this.date_pay = date_pay;
     }
 

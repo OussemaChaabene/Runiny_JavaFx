@@ -37,18 +37,23 @@ import javafx.stage.Stage;
 public class FXMain extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
 
-        payement p = new payement();
+        try{
+        /*payement p = new payement();
         p.setMontant(2000);
-        p.setDate_pay(java.sql.Date.valueOf(LocalDate.now()));
+        p.setDate_pay(LocalDate.now().toString());
+        p.setId_pay(1);
         PayementService ps = new PayementService();
-
+        ps.ajouterP(p);*/
         Parent root = FXMLLoader.load(getClass().getResource("../GUI/PayementsFx.fxml"));
         Scene scene = new Scene(root); 
         primaryStage.setTitle("Payements");
-        primaryStage.setScene(new Scene(root));
+        primaryStage.setScene(scene);
         primaryStage.show();
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     /**

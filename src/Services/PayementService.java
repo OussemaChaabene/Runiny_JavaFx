@@ -32,11 +32,13 @@ public class PayementService {
     public void ajouterP(payement p) {
         
         try {
-            String requete = "INSERT INTO payement(montant,date_pay)"
-                    + "VALUES(?,?)";
+            String requete = "INSERT INTO payement(montant,date_pay,id_user,ab_id)"
+                    + "VALUES(?,?,?,?)";
             PreparedStatement pst = cnx.prepareStatement(requete);
             pst.setFloat(1, p.getMontant());
-            pst.setDate(2, (Date) p.getDate_pay());
+            pst.setString(2,  p.getDate_pay());
+            pst.setInt(3,  1);
+            pst.setInt(4,  2);
             pst.executeUpdate();
             
             System.out.println("Payement enregistré !");
@@ -56,8 +58,8 @@ public class PayementService {
             while (rs.next()) {
                 payement p = new payement();
                 p.setId_pay(rs.getInt("id_pay"));
-                p.setMontant(rs.getFloat("montant"));
-                p.setDate_pay(rs.getDate("date_pay"));
+                p.setMontant(rs.getInt("montant"));
+                p.setDate_pay(rs.getString("date_pay"));
                 p_list.add(p);
                 System.out.println(p.toString());
             }

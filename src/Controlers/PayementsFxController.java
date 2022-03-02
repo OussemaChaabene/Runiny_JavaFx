@@ -58,11 +58,14 @@ public class PayementsFxController implements Initializable {
         try {
             for (int i = 0; 1 < pl.size(); i++) {
                 FXMLLoader fl = new FXMLLoader();
-                fl.setLocation(getClass().getResource("/GUI/PayementCard"));
+                System.out.println("test");
+                fl.setLocation(getClass().getResource("/GUI/PaymentCardFx.fxml"));
                 AnchorPane anchorPane = fl.load();
+                System.out.println("test1");
 
                 PaymentCardFxController itemController = fl.getController();
                 itemController.setData(pl.get(i), myListener);
+                System.out.println("test");
 
                 if (column == 3) {
                     column = 0;
@@ -82,7 +85,7 @@ public class PayementsFxController implements Initializable {
                 //GridPane.setMargin(anchorPane, new Insets(10));
             }
         } catch (IOException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
 
     }

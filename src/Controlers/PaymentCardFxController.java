@@ -52,8 +52,8 @@ public class PaymentCardFxController implements Initializable {
     public void setData(payement pay, MyListener myListener) {
         this.pay = pay;
         this.myListener = myListener;
-        montant.setText(Float.toString(pay.getMontant()));
-        dates.setText(pay.getDate_pay().toString());
+        montant.setText(String.valueOf(pay.getMontant()));
+        dates.setText(pay.getDate_pay());
         /* priceLable.setText(Main.CURRENCY + fruit.getPrice());
         Image image = new Image(getClass().getResourceAsStream(fruit.getImgSrc()));
         img.setImage(image);*/
