@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class MyDB {
 
-    private final String url = "jdbc:mysql://localhost:3306/runiny";
+    private final String url = "jdbc:mysql://localhost:3306/dbsami";
     private final String user = "root";
     private final String password = "";
     private Connection cnx;
