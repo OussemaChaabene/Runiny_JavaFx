@@ -5,6 +5,8 @@
  */
 package runiny_javafx;
 
+import Metier.PayementM;
+import entities.payement;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -21,6 +23,9 @@ public class Runiny_javaFx {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
+        payement p = new payement();
+        p.setMontant(2000);
+        PayementM pm=new PayementM();
+        pm.payment(p);
     }
 }

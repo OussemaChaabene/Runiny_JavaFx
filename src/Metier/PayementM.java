@@ -18,6 +18,7 @@ import java.util.HashMap;
 import static spark.Spark.*;
 import com.stripe.model.Event;
 import com.stripe.exception.SignatureVerificationException;
+import entities.payement;
 
 /**
  *
@@ -25,6 +26,7 @@ import com.stripe.exception.SignatureVerificationException;
  */
 public class PayementM {
 
+    long prix;
     private static Gson gson = new Gson();
 
     static class CreatePaymentRequest {
@@ -73,7 +75,13 @@ public class PayementM {
 
     }
 
-    public void payment() {
+    public void payment(Object o) {
+        
+        payement p = new payement();
+        if(o instanceof payement){
+            prix = (long)p.getMontant();
+            
+        }
         port(4242);
         Dotenv dotenv = Dotenv.load();
 
@@ -106,7 +114,7 @@ public class PayementM {
             PaymentIntentCreateParams.Builder paramsBuilder = new PaymentIntentCreateParams.Builder()
                     .addPaymentMethodType(postBody.getPaymentMethodType())
                     .setCurrency(postBody.getCurrency())
-                    .setAmount(1999L);
+                    .setAmount(this.prix);
 
             // If this is for an ACSS payment, we add payment_method_options to create
             // the Mandate.
