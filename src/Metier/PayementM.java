@@ -5,6 +5,7 @@
  */
 package Metier;
 
+import Services.PayementService;
 import com.google.gson.*;
 import com.google.gson.annotations.SerializedName;
 import com.stripe.Stripe;
@@ -19,6 +20,8 @@ import static spark.Spark.*;
 import com.stripe.model.Event;
 import com.stripe.exception.SignatureVerificationException;
 import entities.payement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -187,4 +190,6 @@ public class PayementM {
             return "";
         });
     }
+    
+   
 }

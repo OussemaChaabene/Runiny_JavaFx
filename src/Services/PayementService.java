@@ -29,7 +29,7 @@ public class PayementService {
 
     }
 
-    public void ajouterAdmin(payement p) {
+    public void ajouterP(payement p) {
         
         try {
             String requete = "INSERT INTO payement(montant,date_pay)"
@@ -45,7 +45,7 @@ public class PayementService {
         }
     }
 
-    public List<payement> afficherAdmins() {
+    public List<payement> afficherPs() {
         
         List<payement> p_list = new ArrayList<>();
         
@@ -68,7 +68,7 @@ public class PayementService {
         return p_list;
     }
 
-    public void supprimerAdmin(payement p) {
+    public void supprimerPs(payement p) {
 
         try {
             String requete = "DELETE FROM payement WHERE"
@@ -84,7 +84,7 @@ public class PayementService {
 
     }
     
-    public void modifierAdmin(payement p,float montant, Date date){
+    public void modifierPs(payement p,float montant, Date date){
         
          try {
             String requete = " UPDATE payement SET montant=?, date_pay=?" 
