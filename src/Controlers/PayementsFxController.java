@@ -16,6 +16,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -32,8 +33,6 @@ public class PayementsFxController implements Initializable {
     private ScrollPane scroll;
     @FXML
     private GridPane grid;
-    
-    
 
     /**
      * Initializes the controller class.
@@ -42,36 +41,29 @@ public class PayementsFxController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         PayementService pserv = new PayementService();
-        List<payement> pl = new ArrayList<payement>();
+        List<payement> pl = new ArrayList<>();
         pl.addAll(pserv.afficherPs());
-        
-         
-        
+
         int column = 0;
         int row = 0;
-        
+
         try {
             for (int i = 0; i < pl.size(); i++) {
                 FXMLLoader fl = new FXMLLoader();
-                
+
                 fl.setLocation(getClass().getResource("../GUI/PaymentCardFx.fxml"));
-                
+
                 AnchorPane anchorPane = fl.load();
-                
 
-                PaymentCardFxController itemController = fl.getController();
-                System.out.println("abc");
-                
+                PaymentCardFxController ic = fl.getController();
 
-                try{
-                itemController.setData(pl.get(i));
-                
-                }
-                catch(Exception e){
+                try {
+                    ic.setData(pl.get(i));
+
+                } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
-                
-                
+
                 System.out.println("test");
 
                 if (column == 2) {
@@ -89,7 +81,7 @@ public class PayementsFxController implements Initializable {
                 grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 grid.setMaxHeight(Region.USE_PREF_SIZE);
 
-                GridPane.setMargin(anchorPane, new Insets(5));
+                GridPane.setMargin(anchorPane, new Insets(10));
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());

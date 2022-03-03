@@ -6,10 +6,15 @@
 package Controlers;
 
 import entities.payement;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -19,7 +24,7 @@ import javafx.scene.layout.Pane;
  *
  * @author ASUS
  */
-public class PaymentCardFxController  {
+public class PaymentCardFxController implements Initializable  {
 
 
     @FXML
@@ -32,8 +37,14 @@ public class PaymentCardFxController  {
     private Label dates;
     
     private payement pay;
+   
     
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        
+    }
+    
     public void setData(payement pay) {
         
         montant.setText("2000"/*String.valueOf(pay.getMontant())*/);

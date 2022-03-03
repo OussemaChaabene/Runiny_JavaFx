@@ -3,6 +3,7 @@ java.lang.Object
 runiny_javafx.MyListener
 ||:Controlers.PaymentCardFxController
 java.lang.Object
+javafx.fxml.Initializable
 entities.payement
 Controlers.PaymentCardFxController
 javafx.scene.control.Label
