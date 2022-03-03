@@ -19,10 +19,9 @@ import javafx.scene.layout.Pane;
  *
  * @author ASUS
  */
-public class PaymentCardFxController implements Initializable {
+public class PaymentCardFxController  {
 
-    @FXML
-    private Pane achat;
+
     @FXML
     private Label username;
     @FXML
@@ -35,19 +34,10 @@ public class PaymentCardFxController implements Initializable {
     private payement pay;
     
 
-   
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }
-
     public void setData(payement pay) {
-        this.pay = pay;
+        
         montant.setText("2000"/*String.valueOf(pay.getMontant())*/);
-        dates.setText("12-6-13"/*pay.getDate_pay()*/);
+        dates.setText(pay.getDate_pay());
         
     }
 }

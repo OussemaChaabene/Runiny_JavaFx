@@ -40,12 +40,7 @@ public class FXMain extends Application {
     public void start(Stage primaryStage) {
 
         try{
-        /*payement p = new payement();
-        p.setMontant(2000);
-        p.setDate_pay(LocalDate.now().toString());
-        p.setId_pay(1);
-        PayementService ps = new PayementService();
-        ps.ajouterP(p);*/
+        
         Parent root = FXMLLoader.load(getClass().getResource("../GUI/PayementsFx.fxml"));
         Scene scene = new Scene(root); 
         primaryStage.setTitle("Payements");

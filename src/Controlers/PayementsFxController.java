@@ -42,30 +42,39 @@ public class PayementsFxController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         PayementService pserv = new PayementService();
-        List<payement> pl = new ArrayList<>();
+        List<payement> pl = new ArrayList<payement>();
         pl.addAll(pserv.afficherPs());
         
          
         
         int column = 0;
-        int row = 1;
+        int row = 0;
         
         try {
             for (int i = 0; i < pl.size(); i++) {
                 FXMLLoader fl = new FXMLLoader();
-                System.out.println("testr");
                 
                 fl.setLocation(getClass().getResource("../GUI/PaymentCardFx.fxml"));
-                System.out.println("abc");
                 
                 AnchorPane anchorPane = fl.load();
-                System.out.println("test1");
+                
 
                 PaymentCardFxController itemController = fl.getController();
+                System.out.println("abc");
+                
+
+                try{
                 itemController.setData(pl.get(i));
+                
+                }
+                catch(Exception e){
+                    System.out.println(e.getMessage());
+                }
+                
+                
                 System.out.println("test");
 
-                if (column == 3) {
+                if (column == 2) {
                     column = 0;
                     row++;
                 }
@@ -80,7 +89,7 @@ public class PayementsFxController implements Initializable {
                 grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 grid.setMaxHeight(Region.USE_PREF_SIZE);
 
-                GridPane.setMargin(anchorPane, new Insets(10));
+                GridPane.setMargin(anchorPane, new Insets(5));
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
