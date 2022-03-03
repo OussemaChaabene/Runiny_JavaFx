@@ -4,14 +4,27 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<Pane fx:id="paye" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="139.0" prefWidth="347.0" style="-fx-background-radius: 30; -fx-border-radius: 30;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlers.PaymentCardFxController">
+<Pane fx:id="paye" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="139.0" prefWidth="347.0" style="-fx-background-radius: 30; -fx-border-radius: 30;" styleClass="pane" stylesheets="@../Utils/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlers.PaymentCardFxController">
    <children>
       <ImageView fitHeight="88.0" fitWidth="93.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="username" layoutX="46.0" layoutY="107.0" text="Label" />
+      <Label fx:id="username" layoutX="46.0" layoutY="107.0" text="Label" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
       <Line endX="-27.800025939941406" endY="-45.20000076293945" layoutX="148.0" layoutY="60.0" startX="-27.800025939941406" startY="62.80000305175781" />
-      <Label fx:id="montant" layoutX="139.0" layoutY="16.0" text="Label" />
-      <Label fx:id="achat" layoutX="139.0" layoutY="52.0" text="Label" />
-      <Label fx:id="dates" layoutX="139.0" layoutY="96.0" text="Label" />
+      <Label fx:id="montant" layoutX="139.0" layoutY="16.0" text="Label" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="achat" layoutX="139.0" layoutY="52.0" text="Label" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="dates" layoutX="139.0" layoutY="96.0" text="Label" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
    </children>
 </Pane>

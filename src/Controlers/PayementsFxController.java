@@ -7,7 +7,7 @@ package Controlers;
 
 import Services.PayementService;
 import entities.payement;
-import java.awt.Insets;
+import javafx.geometry.Insets;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -20,7 +20,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
-import runiny_javafx.MyListener;
 
 /**
  * FXML Controller class
@@ -33,7 +32,8 @@ public class PayementsFxController implements Initializable {
     private ScrollPane scroll;
     @FXML
     private GridPane grid;
-    private MyListener myListener;
+    
+    
 
     /**
      * Initializes the controller class.
@@ -45,26 +45,24 @@ public class PayementsFxController implements Initializable {
         List<payement> pl = new ArrayList<>();
         pl.addAll(pserv.afficherPs());
         
-         myListener = new MyListener() {
-                @Override
-                public void onClickListener(payement p) {
-                    //setChosenPayement();
-                }
-            };
+         
         
         int column = 0;
         int row = 1;
         
         try {
-            for (int i = 0; 1 < pl.size(); i++) {
+            for (int i = 0; i < pl.size(); i++) {
                 FXMLLoader fl = new FXMLLoader();
-                System.out.println("test");
-                fl.setLocation(getClass().getResource("/GUI/PaymentCardFx.fxml"));
+                System.out.println("testr");
+                
+                fl.setLocation(getClass().getResource("../GUI/PaymentCardFx.fxml"));
+                System.out.println("abc");
+                
                 AnchorPane anchorPane = fl.load();
                 System.out.println("test1");
 
                 PaymentCardFxController itemController = fl.getController();
-                itemController.setData(pl.get(i), myListener);
+                itemController.setData(pl.get(i));
                 System.out.println("test");
 
                 if (column == 3) {
@@ -82,7 +80,7 @@ public class PayementsFxController implements Initializable {
                 grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 grid.setMaxHeight(Region.USE_PREF_SIZE);
 
-                //GridPane.setMargin(anchorPane, new Insets(10));
+                GridPane.setMargin(anchorPane, new Insets(10));
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());

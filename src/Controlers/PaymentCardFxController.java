@@ -13,7 +13,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import runiny_javafx.MyListener;
 
 /**
  * FXML Controller class
@@ -34,13 +33,9 @@ public class PaymentCardFxController implements Initializable {
     private Label dates;
     
     private payement pay;
-    private MyListener myListener;
+    
 
-    @FXML
-    private void click(MouseEvent mouseEvent) {
-        myListener.onClickListener(pay);
-    }
-
+   
     /**
      * Initializes the controller class.
      */
@@ -49,13 +44,10 @@ public class PaymentCardFxController implements Initializable {
         // TODO
     }
 
-    public void setData(payement pay, MyListener myListener) {
+    public void setData(payement pay) {
         this.pay = pay;
-        this.myListener = myListener;
-        montant.setText(String.valueOf(pay.getMontant()));
-        dates.setText(pay.getDate_pay());
-        /* priceLable.setText(Main.CURRENCY + fruit.getPrice());
-        Image image = new Image(getClass().getResourceAsStream(fruit.getImgSrc()));
-        img.setImage(image);*/
+        montant.setText("2000"/*String.valueOf(pay.getMontant())*/);
+        dates.setText("12-6-13"/*pay.getDate_pay()*/);
+        
     }
 }
