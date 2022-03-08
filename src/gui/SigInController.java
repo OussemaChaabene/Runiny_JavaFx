@@ -63,7 +63,7 @@ public class SigInController implements Initializable {
             }
             else{
                   String requete = ("select * from user where Login=?"
-                    + " and Password=?");
+                    + " and Password=?" + " and Role='Client'");
                 PreparedStatement pst = new MyDB().getConnection().prepareStatement(requete);
                 pst.setString(1,tfemail.getText());
                 pst.setString(2, tfpwd.getText());
@@ -77,7 +77,29 @@ public class SigInController implements Initializable {
                 window.show();
                 }
                 else{
-                    errorlab.setText(" Login or password is wrong");
+                    errorlab.setText(" Login or password is wrong ");
+                }
+            }
+                if(Login.isEmpty() || Password.isEmpty()){
+               errorlab.setText("Please insert Login and password");
+            }
+            else{
+                  String requete = ("select * from user where Login=?"
+                    + " and Password=?" + " and Role='Admin'");
+                PreparedStatement pst = new MyDB().getConnection().prepareStatement(requete);
+                pst.setString(1,tfemail.getText());
+                pst.setString(2, tfpwd.getText());
+                ResultSet rs = pst.executeQuery();
+                
+                if(rs.next()){
+                Parent fxml=FXMLLoader.load(getClass().getResource("GestionUtilis.fxml"));
+                Scene scene3=new Scene(fxml);
+                Stage window =(Stage)((Node)event.getSource()).getScene().getWindow();
+                window.setScene(scene3);
+                window.show();
+                }
+                else{
+                    errorlab.setText(" Login or password is wrong ");
                 }
             }
             }
