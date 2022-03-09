@@ -5,7 +5,10 @@
  */
 package runiny_javafx;
 
+import Services.PayementService;
+import entities.payement;
 import javafx.application.Application;
+import static javafx.application.Application.launch;
 
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -18,20 +21,23 @@ import javafx.stage.Stage;
  * @author ASUS
  */
 public class FXMain extends Application {
+    public static final String CURRENCY = "$";
 
-    @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws Exception {
 
-        try{
-        
-        Parent root = FXMLLoader.load(getClass().getResource("../GUI/PayementsFx.fxml"));
+       
+       
+        Parent root = FXMLLoader.load(getClass().getResource("PayementsFx.fxml"));
         //Scene scene = new Scene(root); 
         primaryStage.setTitle("Payements");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
+        
+       
+        /*Parent root = FXMLLoader.load(getClass().getResource("../GUI/market.fxml"));
+        primaryStage.setTitle("Fruits Marker");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();*/
     }
 
     /**
@@ -39,6 +45,8 @@ public class FXMain extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+        
+        
     }
 
 }
