@@ -9,13 +9,11 @@ import Services.ReservCrud;
 import com.mysql.jdbc.Connection;
 import entitites.Reserv;
 import java.io.IOException;
-import static java.lang.Integer.parseInt;
 import java.net.URL;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import static java.sql.Types.NULL;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -35,7 +33,6 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.stage.Stage;
-import utilities.MyDB;
 
 /**
  * FXML Controller class
@@ -67,6 +64,8 @@ public class ReservSPRIVController implements Initializable {
     private Button mrs;
     @FXML
     private Button resSPRi;
+    @FXML
+    private Button ret;
 
     @Override
 
@@ -96,7 +95,7 @@ public class ReservSPRIVController implements Initializable {
     @FXML
     private void reservation(ActionEvent event) throws IOException {
         Parent fxml;
-        fxml = FXMLLoader.load(getClass().getResource("GUI/reservation.fxml"));
+        fxml = FXMLLoader.load(getClass().getResource("reservation.fxml"));
         Scene scene3 = new Scene(fxml);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene3);
@@ -126,6 +125,7 @@ public class ReservSPRIVController implements Initializable {
     }
     @FXML
     private void remplir_salle() {
+        sll.getItems().clear();
         String Sname = "SELECT * FROM salle";
 
         try {
@@ -143,18 +143,53 @@ public class ReservSPRIVController implements Initializable {
     }
     @FXML
     private void reSpriv() {
-        String chc = "Select id_user from user where Prenom,Nom =" + coach.getValue() + "";
-        String datpick = (date.getValue().format(DateTimeFormatter.ofPattern("yyyy-mm-dd"))).toString();
-        String dt = datpick + curheure + curmin;
+        String params = coach.getValue();
+    String s1, s2, s3;
+    s1 = params.substring(0, params.indexOf(" "));
+    params = params.substring(params.indexOf(" ") + 1, params.length());
+    s2 = params;
+    System.out.println(s1);System.out.println(s2);
+        String chc = "Select * from user where Prenom ='"+s1+"' && Nom ='" + s2 + "'";
+        String idsa = "Select * from salle where nom='"+sll.getValue()+"'";
+        String datpick = (date.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))).toString();
+        String dt = datpick +"/" + curheure +"-"+ curmin;
+        System.out.print(dt);
         Reserv sp = new Reserv();
         sp.setId_reser(1);
+        //getting coach's id
+        try {
+            conn = (Connection) DriverManager.getConnection(url, login, password);
+
+            ResultSet rs4 = conn.createStatement().executeQuery(chc);
+            while (rs4.next()) {
+                int numcoach = rs4.getInt(1);
+                sp.setId_coach(rs4.getInt("id_user"));
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        //getting salle's id
+        try {
+            conn = (Connection) DriverManager.getConnection(url, login, password);
+
+            ResultSet rs3 = conn.createStatement().executeQuery(idsa);
+            while (rs3.next()) {
+                int numsalle = rs3.getInt(1);
+                sp.setId_salle(rs3.getInt("id_salle"));
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        
         sp.setDate(dt);
-        sp.setId_salle(0);
-        sp.setId_coach(parseInt(chc));
-        sp.setId_even(NULL);
+        
         ReservCrud rsp = new ReservCrud();
         rsp.ajouterReserv(sp);
     }
+    
     @FXML
     private void mres(ActionEvent event) throws IOException {
         Parent fxml2 = FXMLLoader.load(getClass().getResource("myreservs.fxml"));
@@ -165,3 +200,4 @@ public class ReservSPRIVController implements Initializable {
     }
 
 }
+

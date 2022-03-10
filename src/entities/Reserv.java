@@ -32,6 +32,10 @@ public class Reserv {
     public Reserv() {
     }
 
+    public Reserv(int aInt, String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public int getId_coach() {
         return id_coach;
     }

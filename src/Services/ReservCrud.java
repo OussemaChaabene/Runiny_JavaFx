@@ -13,14 +13,33 @@ public class ReservCrud {
     public void ajouterReserv(Reserv r){
         try {
             String requete = "INSERT INTO reservation (id_reser,id_even,id_coach,id_salle,date)"
-                    + "VALUES(?,?,?,?)";
+                    + "VALUES(?,NULL,?,?,?)";
+            PreparedStatement st = new MyDB().getConnection().prepareStatement(requete);
+            
+            st.setInt(1, r.getId_reser());
+            //st.setInt(2, r.getId_even());
+            st.setInt(2, r.getId_coach());
+            st.setInt(3, r.getId_salle());
+            st.setString(4, r.getDate());
+            st.executeUpdate();
+            //
+            //st.executeUpdate(requete);
+            System.out.println("Reservation ajoutée avec succés");
+        } catch (SQLException ex) {
+            System.err.println (ex.getMessage());
+        }
+    }
+    public void ajouterReservev(Reserv r){
+        try {
+            String requete = "INSERT INTO reservation (id_reser,id_even,id_coach,id_salle,date)"
+                    + "VALUES(?,?,?,?,?)";
             PreparedStatement st = new MyDB().getConnection().prepareStatement(requete);
             
             st.setInt(1, r.getId_reser());
             st.setInt(2, r.getId_even());
-            st.setInt(3, r.getId_coach());
-            st.setInt(4, r.getId_salle());
-            st.setString(5, r.getDate());
+            st.setInt(2, r.getId_coach());
+            st.setInt(3, r.getId_salle());
+            st.setString(4, r.getDate());
             st.executeUpdate();
             //
             //st.executeUpdate(requete);
@@ -59,7 +78,7 @@ public class ReservCrud {
                 Reserv r = new Reserv();
                 r.setId_reser(rs.getInt(1));
                 r.setId_user(rs.getInt(1));
-                r.setId_even(rs.getInt(1));
+                //r.setId_even(rs.getInt(1));
                 r.setId_salle(rs.getInt(1));
                 r.setDate(rs.getString("date"));
                 myList.add(r);

@@ -33,29 +33,20 @@ import jfx.messagebox.MessageBox;
  *
  * @author mayro
  */
-public class SuprimresprvController implements Initializable {
+public class SupprimereventsController implements Initializable {
 
     @FXML
     private Button res;
     @FXML
-    private ComboBox<String> ress;
+    private ComboBox<String> evens;
     @FXML
-    private TextField affcoach;
-    @FXML
-    private TextField affsalle;
-    @FXML
-    private TextField affdate;
-    @FXML
-    private Button retour;
-    @FXML
-    private Button supp;
-    @FXML
-    private TextField afftmp;
+    private Button supev;
     Connection conn = null;
     Statement st = null;
     String url = "jdbc:mysql://localhost:3306/runiny";
     String login = "root";
     String password = "";
+
 
     /**
      * Initializes the controller class.
@@ -65,6 +56,7 @@ public class SuprimresprvController implements Initializable {
         // TODO
         get_reservations();
     }    
+
     @FXML
     private void reservation(ActionEvent event) throws IOException {
         Parent fxml;
@@ -72,28 +64,30 @@ public class SuprimresprvController implements Initializable {
                 Scene scene3=new Scene(fxml);
                 Stage window =(Stage)((Node)event.getSource()).getScene().getWindow();
                 window.setScene(scene3);
-                window.show();}
+                window.show();
+    }
+
     @FXML
-    private void ret(ActionEvent event) throws IOException {
-        Parent fxml;
-        fxml = FXMLLoader.load(getClass().getResource("myreservs.fxml"));
-                Scene scene8=new Scene(fxml);
+    private void retour(ActionEvent event) throws IOException {
+        Parent fxml1;
+        fxml1 = FXMLLoader.load(getClass().getResource("my resevents.fxml"));
+                Scene scene4=new Scene(fxml1);
                 Stage window =(Stage)((Node)event.getSource()).getScene().getWindow();
-                window.setScene(scene8);
-                window.show();}
+                window.setScene(scene4);
+                window.show();
+    }
     private void get_reservations() {
-        ress.getItems().clear();
+        evens.getItems().clear();
         Connection conn = null;
         Statement st = null;
-        String getres = "SELECT *  FROM reservation where id_even=Null";
-
+        String getres = "SELECT *  FROM reservation where id_even =! Null";
         try {
             conn = (Connection) DriverManager.getConnection(url, login, password);
             ResultSet rs1 = conn.createStatement().executeQuery(getres);
             while (rs1.next()) {
                 String dateres = rs1.getString(1);
                 String dater = rs1.getString("date");
-                ress.getItems().addAll(dater);
+                evens.getItems().addAll(dater);
             }
 
         } catch (SQLException e) {
@@ -101,8 +95,8 @@ public class SuprimresprvController implements Initializable {
         }
     }
     @FXML
-    private void supprimerres(ActionEvent event)throws IOException{
-        String resdate = ress.getValue();
+    private void supprimeven(ActionEvent event) {
+        String resdate = evens.getValue();
         try
     {
         conn = (Connection) DriverManager.getConnection(url, login, password);
@@ -117,7 +111,7 @@ public class SuprimresprvController implements Initializable {
          MessageBox.OK);
         //actualisation de la scene
         Parent fxml1;
-        fxml1 = FXMLLoader.load(getClass().getResource("suprimresprv.fxml"));
+        fxml1 = FXMLLoader.load(getClass().getResource("supprimerevents.fxml"));
                 Scene scene8=new Scene(fxml1);
                 Stage window =(Stage)((Node)event.getSource()).getScene().getWindow();
                 window.setScene(scene8);
@@ -127,7 +121,6 @@ public class SuprimresprvController implements Initializable {
     {
       System.err.println(e.getMessage());
     }
-        
-        
     }
+    
 }
