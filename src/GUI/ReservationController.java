@@ -23,11 +23,14 @@ import java.awt.HeadlessException;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import static java.lang.Double.NaN;
 import java.net.URL;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import static java.sql.Types.NULL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -114,109 +117,55 @@ public class ReservationController implements Initializable {
                 window2.setScene(scene6);
                 window2.show();
     }
-public ObservableList<Reserv> getReservationList() throws SQLException{
-        ObservableList<Reserv> ReservationList = FXCollections.observableArrayList();
-        conn = (Connection) DriverManager.getConnection(url, login, password);
-        String query = "SELECT * FROM reservation";
-        Statement st;
-        ResultSet rs;
+    @FXML
+    public void OnClickedPrint(ActionEvent event) throws IOException{
+         try {
+
+            OutputStream file = new FileOutputStream(new File("D:reservation.pdf"));
+            Document document = new Document();
+            PdfWriter.getInstance(document, file);
+            document.open();
+            document.add(new Paragraph("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Mes Reservations ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n\n\n\n\n\n"));
+
+            document.add(new Paragraph(" ___________________________________________________________________________\n"));
+            document.add(new Paragraph(" Date des Reservations :"));
+            String dater=null;
+            Connection conn = null;
+        Statement st = null;
+        String getres = "SELECT *  FROM reservation where id_even=Null";
         
-        try{
-            st = conn.createStatement();
-            rs = st.executeQuery(query);
-            Reserv Reserva;
-            while(rs.next()){
-                Reserva = new Reserv(rs.getInt("id_res"), rs.getString("date"));
-                ReservationList.add(Reserva);
+            conn = (Connection) DriverManager.getConnection(url, login, password);
+            ResultSet rs1 = conn.createStatement().executeQuery(getres);
+            
+            while (rs1.next()) {
+                String dateres = rs1.getString(1);
+                dater = rs1.getString("date");
+                if (dater==null) {
+                    document.add(new Paragraph("aucune reservation \n"));
+                } else {
+                    document.add(new Paragraph(dater+"\n"));
+                }
+{
+                
             }
                 
-        }catch(SQLException ex){
-            ex.printStackTrace();
-        }
-        return ReservationList;
-    }
-             public void showReservation() throws SQLException{
-        ObservableList<Reserv> list = getReservationList();
-        
-        id_reser.setCellValueFactory(new PropertyValueFactory<Reserv, Integer>("id_res"));
-        date.setCellValueFactory(new PropertyValueFactory<Reserv, Integer>("Date"));
-        
-        
-        allReservation.setItems(list);
-    }
-    private void CreatePDF(ActionEvent event) throws SQLException, IOException, DocumentException {
-    
-     try {
-       Document doc = new Document();
-       PdfWriter.getInstance(doc,new FileOutputStream("C:\\Users\\mayro\\Desktop\\Pi runiny\\Evenement.pdf"));  
-       doc.open();
-    
-       doc.add(new Paragraph(" "));
-       Font font = new Font(Font.FontFamily.TIMES_ROMAN, 28, Font.UNDERLINE, BaseColor.BLACK);
-       Paragraph p = new Paragraph("Vos reservations ", font);
-       p.setAlignment(Element.ALIGN_CENTER);
-       doc.add(p);
-       doc.add(new Paragraph(" "));
-       doc.add(new Paragraph(" "));
- 
+            }
 
-       PdfPTable tabpdfprv = new PdfPTable(2);
-       tabpdfprv.setWidthPercentage(100);
-       PdfPCell cell;
-       cell = new PdfPCell(new Phrase("nom", FontFactory.getFont("Times New Roman", 11)));
-       cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-       cell.setBackgroundColor(BaseColor.WHITE);
-       tabpdfprv.addCell(cell);
-
-        String query = "SELECT * FROM reservation";
-        conn = (Connection) DriverManager.getConnection(url, login, password);
-          Statement st;
-          ResultSet rs;
-          st = conn.createStatement();
-          rs = st.executeQuery(query);
+        
     
-      while (rs.next()) {
-           cell = new PdfPCell(new Phrase("id_reser", FontFactory.getFont("Times New Roman", 11)));
-           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-           cell.setBackgroundColor(BaseColor.WHITE);
-           tabpdfprv.addCell(cell);
-     
-           cell = new PdfPCell(new Phrase(rs.getString("date"), FontFactory.getFont("Times New Roman", 11)));
-           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-           cell.setBackgroundColor(BaseColor.WHITE);
-           tabpdfprv.addCell(cell);
-     
-   
-          doc.add(tabpdfprv);
-          JOptionPane.showMessageDialog(null, "Success !!");
-          doc.close();
-          Desktop.getDesktop().open(new File("C:\\Users\\mayro\\Desktop\\Pi runiny\\Evenement.pdf"));
-       }
-     }
-        catch (DocumentException | HeadlessException | IOException e) {
-            System.out.println("ERROR PDF");
-            System.out.println(Arrays.toString(e.getStackTrace()));
+            
+            document.add(new Paragraph(" ___________________________________________________________________________"));
+
+            document.add(new Paragraph("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Mes Reservations ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"));
+            document.close();
+            file.close();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
             System.out.println(e.getMessage());
-          }
-    
- }
-    @FXML
-    private void OnClickedPrint(ActionEvent event) {
-         PrinterJob job = PrinterJob.createPrinterJob();
-       
-        Node root= this.allReservation;
-       
-       
-     if(job != null){
-     job.showPrintDialog(root.getScene().getWindow()); // Window must be your main Stage
-     Printer printer = job.getPrinter();
-     PageLayout pageLayout = printer.createPageLayout(Paper.A3, PageOrientation.LANDSCAPE, Printer.MarginType.HARDWARE_MINIMUM);
-     boolean success = job.printPage(pageLayout, root);
-     if(success){
-        job.endJob();
+
+        }
         
-        
-     }
-     }
     }
 }

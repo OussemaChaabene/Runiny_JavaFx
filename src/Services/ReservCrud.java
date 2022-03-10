@@ -68,10 +68,10 @@ public class ReservCrud {
             System.err.println (ex.getMessage());
         }
     }
-    public List<Reserv> afficherReservpriv(int id_user){
+    public List<Reserv> afficherReservpriv(){
         List<Reserv> myList = new ArrayList<>();
         try {
-            String requete3 = "SELECT date FROM reservation where id_user="+id_user;
+            String requete3 = "SELECT date FROM reservation ";
             Statement st = new MyDB().getConnection().createStatement();
             ResultSet rs = st.executeQuery(requete3);
             while (rs.next()){

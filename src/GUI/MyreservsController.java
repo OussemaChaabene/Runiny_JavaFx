@@ -5,9 +5,14 @@
  */
 package GUI;
 
+import Services.ReservCrud;
+import entitites.Reserv;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +21,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 /**
@@ -33,13 +39,21 @@ public class MyreservsController implements Initializable {
     private Button supprimresprv;
     @FXML
     private Button modifresprv;
+    @FXML
+    private ListView<Reserv> tablres;
 
+    private ObservableList<Reserv> afficherres(){
+        ReservCrud aff=new ReservCrud();
+        List<Reserv> afr =aff.afficherReservpriv();
+        return FXCollections.observableList(afr);
+    }
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        ReservCrud rs= new ReservCrud();
+        tablres.getItems().addAll(rs.afficherReservpriv());
     }  
     @FXML
     private void reservation(ActionEvent event) throws IOException {
@@ -74,7 +88,5 @@ public class MyreservsController implements Initializable {
                 window1.setScene(scene7);
                 window1.show();
     }
-    private void afficheres(){
-        
-    }
+
 }

@@ -34,7 +34,6 @@
                <font>
                   <Font size="24.0" />
                </font></Label>
-            <ListView layoutX="56.0" layoutY="153.0" prefHeight="433.0" prefWidth="539.0" />
             <Button fx:id="retour" layoutX="15.0" layoutY="627.0" mnemonicParsing="false" onAction="#reReservSPRIV" text="Retour ">
                <font>
                   <Font size="18.0" />
@@ -50,6 +49,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
+            <ListView fx:id="tablres" layoutX="101.0" layoutY="145.0" prefHeight="388.0" prefWidth="458.0" />
          </children></Pane>
    </children>
 </AnchorPane>
