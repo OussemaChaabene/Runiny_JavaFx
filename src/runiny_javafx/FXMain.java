@@ -7,6 +7,9 @@ package runiny_javafx;
 
 import Services.PayementService;
 import entities.payement;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 
@@ -16,28 +19,30 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import com.itextpdf.text.Document;
+
+import com.itextpdf.text.Paragraph;
+
+import com.itextpdf.text.pdf.PdfWriter;
+import java.util.Date;
+
 /**
  *
  * @author ASUS
  */
 public class FXMain extends Application {
+
     public static final String CURRENCY = "$";
 
     public void start(Stage primaryStage) throws Exception {
 
        
-       
-        Parent root = FXMLLoader.load(getClass().getResource("PayementsFx.fxml"));
-        //Scene scene = new Scene(root); 
+        /*
+        Parent root = FXMLLoader.load(getClass().getResource("PayementsHistory.fxml"));
         primaryStage.setTitle("Payements");
         primaryStage.setScene(new Scene(root));
-        primaryStage.show();
-        
-       
-        /*Parent root = FXMLLoader.load(getClass().getResource("../GUI/market.fxml"));
-        primaryStage.setTitle("Fruits Marker");
-        primaryStage.setScene(new Scene(root));
         primaryStage.show();*/
+
     }
 
     /**
@@ -45,8 +50,7 @@ public class FXMain extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-        
-        
+
     }
 
 }

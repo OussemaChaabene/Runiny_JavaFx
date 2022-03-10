@@ -15,6 +15,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -23,6 +25,7 @@ import java.util.List;
 public class PayementService {
     
     Connection cnx;
+    PayementPdf pdf = new PayementPdf ();
 
     public PayementService() {
         cnx = MyDB.getInstance().getCnx();
@@ -41,6 +44,8 @@ public class PayementService {
             pst.setInt(4,  2);
             pst.executeUpdate();
             
+            pdf.pdfGen(p);
+            
             System.out.println("Payement enregistré !");
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
@@ -50,6 +55,29 @@ public class PayementService {
     public List<payement> afficherPs() {
         
         List<payement> p_list = new ArrayList<>();
+        
+        try {
+            String requete = "SELECT * FROM payement";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            while (rs.next()) {
+                payement p = new payement();
+                p.setId_pay(rs.getInt("id_pay"));
+                p.setMontant(rs.getInt("montant"));
+                p.setDate_pay(rs.getString("date_pay"));
+                p_list.add(p);
+                System.out.println(p.toString());
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+
+        return p_list;
+    }
+    
+    public ObservableList<payement> afficherPso() {
+        
+        ObservableList<payement> p_list = FXCollections.observableArrayList();
         
         try {
             String requete = "SELECT * FROM payement";

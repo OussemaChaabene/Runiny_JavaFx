@@ -46,7 +46,7 @@ public class PayementsFxController implements Initializable {
 
         int column = 0;
         int row = 0;
-
+//git test
         try {
             for (int i = 0; i < pl.size(); i++) {
                 FXMLLoader fl = new FXMLLoader();
