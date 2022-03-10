@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui;
+package GUI;
 
+import entitie.UserSession;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -13,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -51,6 +53,7 @@ public class SigInController implements Initializable {
         // TODO
     }    
 
+    
     @FXML
     private void Connecter(ActionEvent event) throws SQLException {
        Statement st = new MyDB().getConnection().createStatement();
@@ -90,7 +93,7 @@ public class SigInController implements Initializable {
                 pst.setString(1,tfemail.getText());
                 pst.setString(2, tfpwd.getText());
                 ResultSet rs = pst.executeQuery();
-                
+                 
                 if(rs.next()){
                 Parent fxml=FXMLLoader.load(getClass().getResource("GestionUtilis.fxml"));
                 Scene scene3=new Scene(fxml);
@@ -100,6 +103,7 @@ public class SigInController implements Initializable {
                 }
                 else{
                     errorlab.setText(" Login or password is wrong ");
+                    
                 }
             }
             }

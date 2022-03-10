@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui;
+package GUI;
 
 import entitie.User;
 import java.net.URL;
@@ -122,4 +122,8 @@ public class GestionUtilisController implements Initializable {
   
 
 }
+
+    @FXML
+    private void modifier(ActionEvent event) {
+    }
 }
