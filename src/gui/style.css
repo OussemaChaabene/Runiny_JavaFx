@@ -4,11 +4,10 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 2 mars 2022, 17:50:46
-    Author     : pc
+    Created on : 19 févr. 2022, 14:28:53
+    Author     : ACER EXTENSA 15
 */
-
-parent{
+.parent{
     -fx-background-color: transparent;
     -fx-fit-to-width: true;
 }
@@ -63,11 +62,10 @@ parent{
  -fx-text-alignment: center;
  -fx-backface-visibility : transparent;
 }
-.ts{
-    -fx-background-color: whitesmoke;
-    -fx-background-radius: 5px;
-    -fx-border-color: #cccccc;
-    -fx-border-radius: 5px;
-    -fx-border-width: 1px;
-    -fx-text-fill: black;
+.radio{
+     -fx-text-fill: white;
+}
+.tfrole{
+     -fx-background-color: transparent;
+     -fx-text-fill: transparent;
 }
